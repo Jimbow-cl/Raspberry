@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: esp32
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: pi-one
+    password: raspberry
+    url: jdbc:mariadb://192.168.0.120/pi-one
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+
+server:
+  forward-headers-strategy: native
+  use-forward-headers: true
+  tomcat:
+    remote-ip-header: x-forwarded-for
+    protocol-header: x-forwarded-proto
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+  servlet:
+    context-path: /api
+esp:
+  server:
+    mqttPwd: ${MQTT_PWD:Bs!6@rx?stdrSGmN7KMXE!PjqK!T8DK@MX7dDi85}
+    port: ${ESP_PORT:8081}
